@@ -9,6 +9,7 @@ Symmetris, Symmetris-backend, Symmetris-frontend e vauedge (ver [`docs/INVENTARI
 |---|---|
 | `template/` | O que vai para a raiz do projeto novo: `AGENTS.md`, `CLAUDE.md`, `.claude/` (agents, skills, settings, SESSION_HANDOFF, NOTICE). |
 | `projects/` | Texto para colar no **Claude Projects** (instruções e memória) e a lista do que trabalhar. |
+| `environments/` | Setup script do ambiente de nuvem (campo "Setup script"). `symmetris-setup-env.sh`: .NET 10, Flutter, Docker, Rust; versões por variável de ambiente. Específico do Symmetris: usar como modelo. |
 | `docs/` | Inventário das configurações existentes e lacunas encontradas. |
 | `install.sh` | Copia `template/` para um repo, sem sobrescrever o que já existe. |
 
