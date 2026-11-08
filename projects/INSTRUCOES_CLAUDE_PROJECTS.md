@@ -16,10 +16,17 @@ Regras fixas:
 Equipe de agentes: ao começar, ler `AGENTS.md` e `.claude/SESSION_HANDOFF.md` do repo; seguir o pipeline spec → arquitetura → dev → QA → review com handoff estruturado.
 Respostas curtas: resultado, evidência, pendência. Pergunta só quando a escolha muda o objetivo.
 
-## O que rodar (no início da sessão e antes de entregar)
+## O que rodar
+
+Instalação (uma vez por projeto/repo):
+1. Ambiente de nuvem: colar `environments/symmetris-setup-env.sh` no campo "Setup script" do ambiente (instala .NET 10, Flutter, Docker, Rust; versões por variável, ex.: `FLUTTER_VERSION`, `INSTALL_DOCKER=0`).
+2. Agentes e skills em cada repo de trabalho: `git clone https://github.com/samuelalvesg/claude-agents && ./claude-agents/install.sh <repo>` (não sobrescreve; `--force` sobrescreve). Depois preencher os `<placeholders>` e commitar em branch/PR draft.
+3. Claude Projects: colar este arquivo nas instruções e `MEMORIA_INICIAL.md` na memória.
+
+Rotina de sessão e entrega:
 
 Início da sessão (ambiente de nuvem):
-1. Setup do ambiente, uma vez, no campo "Setup script" do ambiente: `environments/symmetris-setup-env.sh` (.NET 10, Flutter, Docker, Rust). Sem ele, dotnet/flutter/cargo faltam.
+1. Conferir `dotnet`, `flutter`, `cargo`, `docker` (`command -v`); se faltar, o setup da instalação não rodou: rodar `environments/symmetris-setup-env.sh`.
 2. `start-docker` se o Docker não estiver de pé. Sem Docker, os testes de banco são pulados em silêncio.
 3. `git submodule update --init --recursive` no repo que tiver submódulo (proto do vauedge).
 4. `git status -sb` e `git log -3 --oneline`; ler `AGENTS.md` e `.claude/SESSION_HANDOFF.md`.
