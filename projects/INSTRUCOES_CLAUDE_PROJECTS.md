@@ -15,3 +15,20 @@ Regras fixas:
 
 Equipe de agentes: ao começar, ler `AGENTS.md` e `.claude/SESSION_HANDOFF.md` do repo; seguir o pipeline spec → arquitetura → dev → QA → review com handoff estruturado.
 Respostas curtas: resultado, evidência, pendência. Pergunta só quando a escolha muda o objetivo.
+
+## O que rodar (no início da sessão e antes de entregar)
+
+Início da sessão (ambiente de nuvem):
+1. Setup do ambiente, uma vez, no campo "Setup script" do ambiente: `environments/symmetris-setup-env.sh` (.NET 10, Flutter, Docker, Rust). Sem ele, dotnet/flutter/cargo faltam.
+2. `start-docker` se o Docker não estiver de pé. Sem Docker, os testes de banco são pulados em silêncio.
+3. `git submodule update --init --recursive` no repo que tiver submódulo (proto do vauedge).
+4. `git status -sb` e `git log -3 --oneline`; ler `AGENTS.md` e `.claude/SESSION_HANDOFF.md`.
+
+Antes de entregar, por repo (conferir comandos exatos no `AGENTS.md` de cada um):
+- Backend: `dotnet test backend-api/Symmetris.Tests/Symmetris.Tests.csproj`; exigir `Skipped: 0`. Após migration: `python3 backend-api/scripts/check-migrations.py`.
+- Frontend: `melos bootstrap`, depois `flutter analyze` e `flutter test` no pacote tocado.
+- vauedge: `cargo fmt --check`, `cargo clippy -- -D warnings`, `cargo test`.
+- Docs (Symmetris): scripts de `AGENTS.md § Checagens de documentação`.
+- Template de agentes (claude-agents): `./tests/validate.sh`.
+
+Ferramenta ausente ou teste não rodado: registrar `NÃO EXECUTADO: <motivo>` na resposta e no PR; nunca declarar verde.
