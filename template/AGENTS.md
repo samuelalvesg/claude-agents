@@ -25,9 +25,9 @@ Arquivo único e canônico para qualquer agente (Claude Code, Cursor, Aider…).
 - **Quantidade de PRs**: o mínimo possível. Acumule mudanças relacionadas no mesmo PR em **draft**; marque como pronto só no fim. CI roda só ao marcar pronto para review. O usuário faz o merge.
 - **Git**: commit/push só quando o usuário pedir; nunca direto na branch principal; nunca `--force`/`reset --hard` em branch alheia.
 
-## Equipe de agentes (`.claude/agents/`, `.claude/skills/`)
+## Equipe de agentes (`.agents/agents/`, `.agents/skills/`)
 Pipeline: `@spec-analyst` → `@architect` → `@developer` (uma cópia por stack) → `@qa-engineer` → `@reviewer`.
-Por gatilho: `@secops-engineer` (segurança/dependência/release), `@sre-database` (migration, query, telemetria), `@refactoring-architect` (débito, diff separado).
+Por gatilho: `@secops-engineer` (segurança/dependência/release), `@sre-database` (migration, query, telemetria), `@refactoring-architect` (débito, diff separado), `@copywriter-humanizer` (redação e revisão humanizada de docs, PRs, issues e textos UI/UX).
 
 - **Um dono por vez.** Só `@architect`/`@spec-analyst` mudam spec e contrato; só devs mudam código de produção; só `@qa-engineer` muda teste de aceitação; `@reviewer` e `@secops-engineer` só leem.
 - **Handoff** é o único canal entre agentes (≤25 linhas):
